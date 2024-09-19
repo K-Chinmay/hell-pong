@@ -1,0 +1,47 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "dist",
+    "rootDir": "src",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "allowJs": false,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["esnext", "dom", "dom.iterable"],
+    "noImplicitAny": false,
+    "noEmit": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "types": ["vite/client"],
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "incremental": true,
+    "paths": {
+      "@hell-pong/shared/*": ["../shared/src/*"]
+    },
+    "typeRoots": [
+      "../../node_modules/@types",
+      "../../node_modules/phaser/types"
+    ]
+  },
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ],
+  "include": ["src/**/*", "vite.config.js",
+    "src/__tests__/vitest.setup.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

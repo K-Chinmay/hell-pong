@@ -1,0 +1,33 @@
+{
+  "name": "@hell-pong/client",
+  "version": "1.0.0",
+  "description": "Client-side code for my Hell Pong",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "vite --open",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts --ext .js",
+    "lint:fix": "eslint . --ext .ts --ext .js --fix",
+    "test": "vitest --run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@hell-pong/shared": "^1.0.0",
+    "phaser": "^3.60.0",
+    "phaser3-rex-plugins": "^1.60.1",
+    "socket.io-client": "^4.6.1",
+    "tweakpane": "^3.1.9"
+  },
+  "devDependencies": {
+    "@rollup/plugin-replace": "^5.0.2",
+    "@tweakpane/core": "^1.1.8",
+    "canvas": "^2.11.2",
+    "jsdom": "^21.1.2",
+    "phaser3spectorjs": "^0.0.8",
+    "vite": "^4.3.5",
+    "vite-plugin-checker": "^0.6.0",
+    "vitest": "^0.31.0"
+  }
+}

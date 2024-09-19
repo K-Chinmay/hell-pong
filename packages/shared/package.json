@@ -1,0 +1,15 @@
+{
+  "name": "@hell-pong/shared",
+  "version": "1.0.0",
+  "description": "Shared components and utilities",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Stanislav Stepanenko",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsc -w",
+    "build": "tsc -b",
+    "lint": "eslint . --ext .ts --ext js",
+    "lint:fix": "eslint --fix . --ext ts --ext js"
+  }
+}

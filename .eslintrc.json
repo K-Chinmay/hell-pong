@@ -1,0 +1,57 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint",
+    "import",
+    "node",
+    "promise",
+    "eslint-plugin-prettier",
+    "prettier"
+  ],
+  "ignorePatterns": ["dist", "node_modules", "examples", "scripts"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {
+    "import/no-named-as-default-member": "off",
+    "import/no-extraneous-dependencies": "off",
+    "import/named": "off",
+    "import/namespace": "off",
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "no-non-null-assertion": "off",
+    "import/no-named-as-default": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "quotes": ["error", "single", { "avoidEscape": true, "allowTemplateLiterals": true }],
+    "@typescript-eslint/quotes": [
+      "error",
+      "single",
+      {
+        "avoidEscape": true,
+        "allowTemplateLiterals": true
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+        "printWidth": 120,
+        "endOfLine": "auto",
+        "trailingComma": "none",
+        "semi": true,
+        "singleQuote": true,
+        "jsxSingleQuote": true,
+        "tabWidth": 2,
+        "useTabs": false
+      }
+    ]
+  }
+}
