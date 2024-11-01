@@ -1,20 +1,25 @@
-import { Scene } from 'phaser';
-import io, { Socket } from 'socket.io-client';
+import { Scene } from "phaser";
+import io, { Socket } from "socket.io-client";
 
-import FontFamily from '../../constants/FontFamily';
-import MusicKey from '../../constants/MusicKey';
-import RegistryKey from '../../constants/RegistryKey';
-import SceneKey from '../../constants/SceneKey';
-import SoundKey from '../../constants/SoundKey';
-import TextureKey from '../../constants/TextureKey';
-import { SettingsController } from '../../entities/settings/SettingsController';
-import Game from '../../Game';
-import RoundedProgressBar from './components/RoundedProgressBar';
-import { SocketEvents } from '@hell-pong/shared/constants/socket';
-import { ClientToServerEvents, ServerToClientEvents } from '@hell-pong/shared/types/socket.io';
-import BitmapFamily from '../../constants/BitmapFamily';
-const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:8080';
-console.log('SOCKET_URL: ', SOCKET_URL);
+import FontFamily from "../../constants/FontFamily";
+import MusicKey from "../../constants/MusicKey";
+import RegistryKey from "../../constants/RegistryKey";
+import SceneKey from "../../constants/SceneKey";
+import SoundKey from "../../constants/SoundKey";
+import TextureKey from "../../constants/TextureKey";
+import { SettingsController } from "../../entities/settings/SettingsController";
+import Game from "../../Game";
+import RoundedProgressBar from "./components/RoundedProgressBar";
+import { SocketEvents } from "@hell-pong/shared/constants/socket";
+import {
+  ClientToServerEvents,
+  ServerToClientEvents,
+} from "@hell-pong/shared/types/socket.io";
+import BitmapFamily from "../../constants/BitmapFamily";
+// const SOCKET_URL = process.env.SOCKET_URL || 'http://localhost:8080';
+const SOCKET_URL =
+  process.env.SOCKET_URL || "https://hell-pong-kchinmay.onrender.com";
+console.log("SOCKET_URL: ", SOCKET_URL);
 
 export default class PreloaderScene extends Scene {
   private lineProgress!: RoundedProgressBar;
@@ -33,11 +38,14 @@ export default class PreloaderScene extends Scene {
   private initProgressBar() {
     this.lineProgress = new RoundedProgressBar(this);
 
-    this.load.on('progress', (value: number) => this.lineProgress.setValue(value));
+    this.load.on("progress", (value: number) =>
+      this.lineProgress.setValue(value)
+    );
 
     const { startTransition } = this.game as Game;
-    this.load.on('complete', () => {
-      const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(SOCKET_URL);
+    this.load.on("complete", () => {
+      const socket: Socket<ServerToClientEvents, ClientToServerEvents> =
+        io(SOCKET_URL);
 
       socket.on(SocketEvents.Base.Connect, () => {
         this.initRegistry(socket);
@@ -59,23 +67,31 @@ export default class PreloaderScene extends Scene {
   }
 
   private loadTextures() {
-    this.load.atlas(TextureKey.Background.Key, TextureKey.Background.TextureUrl, TextureKey.Background.AtlasUrl);
-    this.load.atlas(TextureKey.Gui.Key, TextureKey.Gui.TextureUrl, TextureKey.Gui.AtlasUrl);
+    this.load.atlas(
+      TextureKey.Background.Key,
+      TextureKey.Background.TextureUrl,
+      TextureKey.Background.AtlasUrl
+    );
+    this.load.atlas(
+      TextureKey.Gui.Key,
+      TextureKey.Gui.TextureUrl,
+      TextureKey.Gui.AtlasUrl
+    );
   }
 
   private loadAudios() {
-    this.load.audio(MusicKey.MainTheme, 'sounds/main_theme.mp3');
-    this.load.audio(MusicKey.BattleTheme, 'sounds/battle_theme.wav');
-    this.load.audio(MusicKey.SecondaryTheme, 'sounds/secondary_theme.mp3');
-    this.load.audio(MusicKey.SplashLogo, 'sounds/splash.mp3');
+    this.load.audio(MusicKey.MainTheme, "sounds/main_theme.mp3");
+    this.load.audio(MusicKey.BattleTheme, "sounds/battle_theme.wav");
+    this.load.audio(MusicKey.SecondaryTheme, "sounds/secondary_theme.mp3");
+    this.load.audio(MusicKey.SplashLogo, "sounds/splash.mp3");
 
-    this.load.audio(SoundKey.ButtonClick, 'sounds/button_click.mp3');
-    this.load.audio(SoundKey.ButtonHover, 'sounds/button_hover.mp3');
-    this.load.audio(SoundKey.ChangeSelection, 'sounds/change_selection.mp3');
-    this.load.audio(SoundKey.Touch, 'sounds/touch.mp3');
-    this.load.audio(SoundKey.StartGame, 'sounds/start_game.mp3');
-    this.load.audio(SoundKey.PaddleHit, 'sounds/paddle_hit.mp3');
-    this.load.audio(SoundKey.BallHit, 'sounds/ball_hit.mp3');
+    this.load.audio(SoundKey.ButtonClick, "sounds/button_click.mp3");
+    this.load.audio(SoundKey.ButtonHover, "sounds/button_hover.mp3");
+    this.load.audio(SoundKey.ChangeSelection, "sounds/change_selection.mp3");
+    this.load.audio(SoundKey.Touch, "sounds/touch.mp3");
+    this.load.audio(SoundKey.StartGame, "sounds/start_game.mp3");
+    this.load.audio(SoundKey.PaddleHit, "sounds/paddle_hit.mp3");
+    this.load.audio(SoundKey.BallHit, "sounds/ball_hit.mp3");
   }
 
   private registerAudios() {
@@ -94,8 +110,12 @@ export default class PreloaderScene extends Scene {
 
   private loadFonts() {
     // this.loadFont(FontFamily.Text, 'fonts/gaming.ttf');
-    this.loadFont(FontFamily.Text, 'fonts/PressStart2P.ttf');
-    this.load.bitmapFont(BitmapFamily.Retro, 'fonts/retro.png', 'fonts/retro.xml');
+    this.loadFont(FontFamily.Text, "fonts/PressStart2P.ttf");
+    this.load.bitmapFont(
+      BitmapFamily.Retro,
+      "fonts/retro.png",
+      "fonts/retro.xml"
+    );
   }
 
   private loadFont(name: string, url: string) {
@@ -108,7 +128,7 @@ export default class PreloaderScene extends Scene {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         document.fonts.add(font);
-        document.body.classList.add('fonts-loaded');
+        document.body.classList.add("fonts-loaded");
         successCallback();
       } catch (e) {
         failureCallback();
